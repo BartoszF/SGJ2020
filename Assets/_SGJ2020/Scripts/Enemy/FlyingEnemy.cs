@@ -30,6 +30,8 @@ public class FlyingEnemy : Enemy
         _rigidbody = GetComponent<Rigidbody2D>();
         _bulletShooter = GetComponent<BulletShooter>();
 
+        Player = FindObjectOfType<PlayerController>().transform;
+
         InvokeRepeating("UpdatePath", 0f, 2f);
     }
 
@@ -64,7 +66,7 @@ public class FlyingEnemy : Enemy
             {
                 var target = Physics2D.Raycast((Vector2)transform.position + diff.normalized, diff.normalized, 15);
 
-                if (!target.collider || target.collider.tag == "Player")
+                if (!target.collider || target.collider.CompareTag("Player"))
                 {
                     _bulletShooter.Shoot((Vector2)transform.position + diff.normalized, diff * shootForce);
                     _shootTimer = shootCooldown;

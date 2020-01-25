@@ -135,6 +135,7 @@ MonoBehaviour:
   rayRightOrigin: {fileID: 5211701769743388372}
   sprite: {fileID: 5211701771496973917}
   playerSprite: {fileID: 5211701771496973906}
+  ppv: {fileID: 0}
   jumpVelocity: 12
   wallJumpVelocity: {x: 120, y: 12}
   horizontalVelocity: 50
@@ -143,8 +144,10 @@ MonoBehaviour:
   maxHorizontalAirSpeed: 10
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
-  damagedBySpikesColddown: 1
+  damageColddown: 1
   shootingDisabled: 0
+  maxHp: 5
+  hpRegenTime: 10
 --- !u!114 &5211701769814390888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,8 +335,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1239225549
+  m_SortingLayer: 1
   m_SortingOrder: -2
   m_Sprite: {fileID: 7388399842426930641, guid: df7888f6efc047e48bde92e2861afe42,
     type: 3}

@@ -10,6 +10,7 @@
       <e p="Assets" t="Include">
         <e p="_SGJ2020" t="Include">
           <e p="Scripts" t="Include">
+            <e p="Between.cs" t="Include" />
             <e p="Bullet.cs" t="Include" />
             <e p="BulletExplosion.cs" t="Include" />
             <e p="BulletShooter.cs" t="Include" />

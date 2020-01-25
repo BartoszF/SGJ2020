@@ -55,7 +55,12 @@ PrefabInstance:
     - target: {fileID: 1270902465728941156, guid: 5900bf37cf14e994b820bc70169111c6,
         type: 3}
       propertyPath: m_Name
-      value: FlyingEnemy
+      value: FlyingEnemy Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270902465728941156, guid: 5900bf37cf14e994b820bc70169111c6,
+        type: 3}
+      propertyPath: m_TagString
+      value: FlyingMob
       objectReference: {fileID: 0}
     - target: {fileID: 1270902465728941159, guid: 5900bf37cf14e994b820bc70169111c6,
         type: 3}
@@ -136,6 +141,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.r
       value: 0.71223897
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270902466780199609, guid: 5900bf37cf14e994b820bc70169111c6,
+        type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1239225549
+      objectReference: {fileID: 0}
+    - target: {fileID: 1270902466780199609, guid: 5900bf37cf14e994b820bc70169111c6,
+        type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1270902465728941159, guid: 5900bf37cf14e994b820bc70169111c6, type: 3}

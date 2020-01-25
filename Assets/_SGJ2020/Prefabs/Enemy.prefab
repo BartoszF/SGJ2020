@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 1270902465728941179}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Mob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 6427471274081808065, guid: 755974dc9febaf84d99d7955e1b5bb9a,
     type: 3}
+  brokenBulletPrefab: {fileID: 0}
 --- !u!1 &1270902466780199591
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +231,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
+  m_SortingLayerID: -1239225549
   m_SortingLayer: 0
   m_SortingOrder: 10
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
