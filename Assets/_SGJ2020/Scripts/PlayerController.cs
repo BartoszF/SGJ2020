@@ -1,5 +1,7 @@
 ﻿using System;
+using _SGJ2020.Scripts.PPEffects;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -12,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     public Transform sprite;
     public SpriteRenderer playerSprite;
+
+    public PostProcessVolume ppv;
 
     public float jumpVelocity = 5f;
     public Vector2 wallJumpVelocity = new Vector2(5, 5);
@@ -29,6 +33,9 @@ public class PlayerController : MonoBehaviour
     private float _currentDamagedBySpikesColddown = 0;
 
     public bool shootingDisabled = false;
+
+    private bool _drunk = false;
+    private float _drunkLerp = 0f;
 
     private Rigidbody2D _rigidbody2D;
     private Collider2D _collider2D;
@@ -85,10 +92,11 @@ public class PlayerController : MonoBehaviour
         }
 
 
+        var drunkMultiplier = _drunk ? (Mathf.Sin(Time.timeSinceLevelLoad) > 0 ? 1f : -1f) : 1f;
         if (Math.Abs(Input.GetAxis("Horizontal")) > 0.1f)
         {
             result += (Vector2) transform.right *
-                      (Input.GetAxis("Horizontal") * horizontalVelocity * Time.fixedDeltaTime);
+                      (Input.GetAxis("Horizontal") * horizontalVelocity * Time.fixedDeltaTime * drunkMultiplier);
         }
         else if (isOnFloor)
         {
@@ -142,6 +150,18 @@ public class PlayerController : MonoBehaviour
         }
 
         playerSprite.color = _damagedBySpikes ? Color.red : Color.white;
+
+        if (_drunk)
+        {
+            _drunkLerp = Mathf.Clamp(_drunkLerp + Time.deltaTime, 0f, 1f);
+        }
+        else
+        {
+            _drunkLerp = Mathf.Clamp(_drunkLerp - Time.deltaTime, 0f, 1f);
+        }
+        var drunkPP = ppv.profile.settings.FindLast(s => s.name == "Drunk(Clone)") as Drunk;
+        drunkPP.waving.value = _drunkLerp * 0.01f;
+        drunkPP.duplicating.value = _drunkLerp * 0.01f;
     }
 
     public void DamageBySpikes()
@@ -152,7 +172,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetDrunk(bool drunk)
     {
-        // TODO
+        _drunk = drunk;
     }
 
     public void SetNoShooting(bool noShooting)

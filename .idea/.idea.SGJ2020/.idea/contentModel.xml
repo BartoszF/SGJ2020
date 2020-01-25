@@ -30,6 +30,10 @@
             <e p="Platform.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
             <e p="PlayerShootingController.cs" t="Include" />
+            <e p="PPEffects" t="Include">
+              <e p="Drunk.shader" t="Include" />
+              <e p="DrunkEffect.cs" t="Include" />
+            </e>
             <e p="ReduxWannabe" t="Include">
               <e p="GameScreen.cs" t="Include" />
               <e p="GameState.cs" t="Include" />
