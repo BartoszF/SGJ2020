@@ -1392,7 +1392,7 @@ MonoBehaviour:
     value: 1
   waving:
     overrideState: 1
-    value: 0.049
+    value: 0
   duplicating:
     overrideState: 1
-    value: 0.01
+    value: 0

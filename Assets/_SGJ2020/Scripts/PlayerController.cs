@@ -28,9 +28,9 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
-    public float damagedBySpikesColddown = 1f;
-    private bool _damagedBySpikes = false;
-    private float _currentDamagedBySpikesColddown = 0;
+    [FormerlySerializedAs("damagedBySpikesColddown")] public float damageColddown = 1f;
+    private bool _damaged = false;
+    private float _currentDamageColddown = 0;
 
     public bool shootingDisabled = false;
 
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
 
         if (isOnFloor)
         {
-            var currentMaxSpeed = _damagedBySpikes ? slowedMaxSpeed : maxSpeed;
+            var currentMaxSpeed = _damaged ? slowedMaxSpeed : maxSpeed;
             if (Math.Abs(result.x) > currentMaxSpeed)
             {
                 result.x = Math.Sign(result.x) * currentMaxSpeed;
@@ -143,13 +143,13 @@ public class PlayerController : MonoBehaviour
         transform.localScale = new Vector3(transform.localScale.x, scaleY, 1);
 
         _rigidbody2D.velocity = result;
-        _currentDamagedBySpikesColddown -= Time.deltaTime;
-        if (_currentDamagedBySpikesColddown < -0)
+        _currentDamageColddown -= Time.deltaTime;
+        if (_currentDamageColddown < -0)
         {
-            _damagedBySpikes = false;
+            _damaged = false;
         }
 
-        playerSprite.color = _damagedBySpikes ? Color.red : Color.white;
+        playerSprite.color = _damaged ? Color.red : Color.white;
 
         if (_drunk)
         {
@@ -166,8 +166,8 @@ public class PlayerController : MonoBehaviour
 
     public void DamageBySpikes()
     {
-        _currentDamagedBySpikesColddown = damagedBySpikesColddown;
-        _damagedBySpikes = true;
+        _currentDamageColddown = damageColddown;
+        _damaged = true;
     }
 
     public void SetDrunk(bool drunk)
@@ -180,8 +180,12 @@ public class PlayerController : MonoBehaviour
         shootingDisabled = noShooting;
     }
 
-    public void SetNoHealing(bool noHealing)
+
+    public void DamageByPlatform(Vector3 transformPosition)
     {
-        // TODO
+        var forceVector = (-transformPosition + transform.position).normalized * 10f;
+        _rigidbody2D.AddForce(forceVector, ForceMode2D.Impulse);
+        _damaged = true;
+        _currentDamageColddown = damageColddown;
     }
 }

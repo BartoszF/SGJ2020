@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _SGJ2020.Scripts.GameplayEffects
 {
@@ -11,7 +9,7 @@ namespace _SGJ2020.Scripts.GameplayEffects
         public bool reverseGravity = false;
         public bool drunk = false;
         public bool noShooting = false;
-        public bool noHealing = false;
+        public bool heating = false;
         public bool spikes = false;
 
         private List<SpikeObject> _spikeObjects;
@@ -29,7 +27,7 @@ namespace _SGJ2020.Scripts.GameplayEffects
             reverseGravity = false;
             drunk = false;
             noShooting = false;
-            noHealing = false;
+            heating = false;
             spikes = false;
         }
 
@@ -39,7 +37,6 @@ namespace _SGJ2020.Scripts.GameplayEffects
             _spikeObjects.ForEach(s => s.SetEnabled(spikes));
             _player.SetDrunk(drunk);
             _player.SetNoShooting(noShooting);
-            _player.SetNoHealing(noHealing);
         }
 
         private void ToggleRandomEffects()
