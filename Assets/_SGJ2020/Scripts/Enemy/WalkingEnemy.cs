@@ -45,6 +45,11 @@ public class WalkingEnemy : Enemy
                 result.x = Mathf.Sign(result.x) * maxSpeed;
             }
 
+            if (Mathf.Abs(diff.y) > 0.5f)
+            {
+                result.y = Physics2D.gravity.y * moveVelocity * Time.deltaTime;
+            }
+
             if (_shootTimer <= 0f)
             {
                 var target = Physics2D.Raycast((Vector2)transform.position + diff.normalized, diff.normalized, 15);
@@ -104,7 +109,7 @@ public class WalkingEnemy : Enemy
                             jumpTimer = 0;
                             startJumpPosition = transform.position;
                             midJumpPosition = (startJumpPosition + (Vector2)targetNode.transform.position) / 2;
-                            midJumpPosition.y = targetNode.transform.position.y > startJumpPosition.y ? targetNode.transform.position.y + 2 : startJumpPosition.y+2;
+                            midJumpPosition.y = targetNode.transform.position.y > startJumpPosition.y ? targetNode.transform.position.y + 2 : startJumpPosition.y + 2;
                             isJumping = true;
 
                         }
@@ -153,16 +158,16 @@ public class WalkingEnemy : Enemy
     }
 
     public Vector2 cubeBezier2(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float t)
- {
-     float r = 1f - t;
-     float f0 = r * r * r;
-     float f1 = r * r * t * 3;
-     float f2 = r * t * t * 3;
-     float f3 = t * t * t;
+    {
+        float r = 1f - t;
+        float f0 = r * r * r;
+        float f1 = r * r * t * 3;
+        float f2 = r * t * t * 3;
+        float f3 = t * t * t;
 
-     return new Vector2(
-     f0*p0.x + f1*p1.x + f2*p2.x + f3*p3.x,
-     f0*p0.y + f1*p1.y + f2*p2.y + f3*p3.y
- );
- }
+        return new Vector2(
+        f0 * p0.x + f1 * p1.x + f2 * p2.x + f3 * p3.x,
+        f0 * p0.y + f1 * p1.y + f2 * p2.y + f3 * p3.y
+    );
+    }
 }
