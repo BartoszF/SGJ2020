@@ -53,7 +53,7 @@ public class PlayerController : MonoBehaviour
             result += (Vector2)transform.up * jumpVelocity;
         }
 
-        if (!_jumped && isOnLeftWall && Input.GetButton("Jump"))
+        if (!_jumped && !isOnFloor && isOnLeftWall && Input.GetButton("Jump"))
         {
             Vector2 direction = new Vector2();
             direction += (Vector2)transform.right * wallJumpVelocity.x;
@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
             _jumped = true;
             result += direction;
         }
-        if (!_jumped && isOnRightWall && Input.GetButton("Jump"))
+        if (!_jumped && !isOnFloor && isOnRightWall && Input.GetButton("Jump"))
         {
             Vector2 direction = new Vector2();
             direction += -(Vector2)transform.right * wallJumpVelocity.x;
