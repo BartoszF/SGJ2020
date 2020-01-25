@@ -37,13 +37,21 @@ public class PlayerController : MonoBehaviour
         _collider2D = GetComponent<Collider2D>();
     }
 
+    public void OnDrawGizmos()
+    {
+        // var raycastDirection = Physics2D.gravity.y < 0 ? -transform.up : transform.up;
+        // Gizmos.DrawLine(rayDownLeftOrigin.position, rayDownLeftOrigin.position + raycastDirection * 0.05f);
+    }
+
     public void FixedUpdate()
     {
         Vector2 result = _rigidbody2D.velocity;
-        var floorLeft = Physics2D.Raycast(rayDownLeftOrigin.position, -transform.up, 0.05f);
-        var floorRight = Physics2D.Raycast(rayDownRightOrigin.position, -transform.up, 0.05f);
+        var raycastDirection = Physics2D.gravity.y < 0 ? -transform.up : transform.up;
+        var floorLeft = Physics2D.Raycast(rayDownLeftOrigin.position, raycastDirection, 0.05f);
+        var floorRight = Physics2D.Raycast(rayDownRightOrigin.position, raycastDirection, 0.05f);
 
-        var isOnFloor = (floorLeft.collider && floorLeft.collider.CompareTag("Ground")) || (floorRight.collider && floorRight.collider.tag == "Ground");
+        var isOnFloor = floorLeft.collider && floorLeft.collider.CompareTag("Ground") ||
+                        floorRight.collider && floorRight.collider.CompareTag("Ground");
 
         var right = transform.right;
         var leftWall = (Physics2D.Raycast(rayLeftOrigin.position, -right, 0.1f));
@@ -55,21 +63,22 @@ public class PlayerController : MonoBehaviour
 
         if (isOnFloor && Input.GetButton("Jump"))
         {
-            result += (Vector2) transform.up * jumpVelocity;
+            result += (Vector2) transform.up * (jumpVelocity * (Physics2D.gravity.y < 0 ? 1f : -1f));
         }
 
         if (!isOnFloor && isOnLeftWall && Input.GetButton("Jump"))
         {
             Vector2 direction = new Vector2();
-            direction += (Vector2)transform.right * wallJumpVelocity.x;
-            direction += (Vector2)transform.up * wallJumpVelocity.y;
+            direction += (Vector2) transform.right * wallJumpVelocity.x;
+            direction += (Vector2) transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
             result += direction;
         }
+
         if (!isOnFloor && isOnRightWall && Input.GetButton("Jump"))
         {
             Vector2 direction = new Vector2();
-            direction += -(Vector2)transform.right * wallJumpVelocity.x;
-            direction += (Vector2)transform.up * wallJumpVelocity.y;
+            direction += -(Vector2) transform.right * wallJumpVelocity.x;
+            direction += (Vector2) transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
             result += direction;
         }
 
@@ -101,19 +110,27 @@ public class PlayerController : MonoBehaviour
             {
                 result.x = Math.Sign(result.x) * currentMaxSpeed;
             }
-        } else {
+        }
+        else
+        {
             if (Math.Abs(result.x) > maxHorizontalAirSpeed)
             {
                 result.x = Math.Sign(result.x) * maxHorizontalAirSpeed;
             }
         }
+
         var currentXScale = sprite.localScale.x;
 
-        if(result.x > 0.01f) {
-            sprite.localScale = new Vector3(currentXScale > 0 ? currentXScale : currentXScale * -1 ,sprite.localScale.y,1);
-        } else if(result.x < -0.01f) {
-            sprite.localScale = new Vector3(currentXScale < 0 ? currentXScale : currentXScale * -1 ,sprite.localScale.y,1);
+        if (result.x > 0.01f)
+        {
+            sprite.localScale = new Vector3(currentXScale > 0 ? currentXScale : currentXScale * -1, sprite.localScale.y, 1);
         }
+        else if (result.x < -0.01f)
+        {
+            sprite.localScale = new Vector3(currentXScale < 0 ? currentXScale : currentXScale * -1, sprite.localScale.y, 1);
+        }
+        var scaleY = Physics2D.gravity.y < 0f ? 1f : -1f;
+        transform.localScale = new Vector3(transform.localScale.x, scaleY, 1);
 
         _rigidbody2D.velocity = result;
         _currentDamagedBySpikesColddown -= Time.deltaTime;
