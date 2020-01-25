@@ -15,14 +15,12 @@ public class PlayerController : MonoBehaviour
     public float horizontalVelocity = 10f;
 
     public float maxSpeed = 5f;
-
+    public float maxHorizontalAirSpeed = 10f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
     private Rigidbody2D _rigidbody2D;
     private Collider2D _collider2D;
-
-    private bool _jumped = false;
 
     public void Start()
     {
@@ -38,11 +36,6 @@ public class PlayerController : MonoBehaviour
 
         var isOnFloor = (floorLeft.collider && floorLeft.collider.tag == "Ground") || (floorRight.collider && floorRight.collider.tag == "Ground");
 
-        if (_jumped && isOnFloor)
-        {
-            _jumped = false;
-        }
-
         var leftWall = (Physics2D.Raycast(rayLeftOrigin.position, -transform.right, 0.1f));
         var rightWall = Physics2D.Raycast(rayRightOrigin.position, transform.right, 0.1f);
 
@@ -55,20 +48,18 @@ public class PlayerController : MonoBehaviour
             result += (Vector2)transform.up * jumpVelocity;
         }
 
-        if (!_jumped && !isOnFloor && isOnLeftWall && Input.GetButton("Jump"))
+        if (!isOnFloor && isOnLeftWall && Input.GetButton("Jump"))
         {
             Vector2 direction = new Vector2();
             direction += (Vector2)transform.right * wallJumpVelocity.x;
             direction += (Vector2)transform.up * wallJumpVelocity.y;
-            _jumped = true;
             result += direction;
         }
-        if (!_jumped && !isOnFloor && isOnRightWall && Input.GetButton("Jump"))
+        if (!isOnFloor && isOnRightWall && Input.GetButton("Jump"))
         {
             Vector2 direction = new Vector2();
             direction += -(Vector2)transform.right * wallJumpVelocity.x;
             direction += (Vector2)transform.up * wallJumpVelocity.y;
-            _jumped = true;
             result += direction;
         }
 
@@ -91,9 +82,17 @@ public class PlayerController : MonoBehaviour
             result += (Vector2)transform.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime;
         }
 
-        if (Math.Abs(result.x) > maxSpeed)
+        if (isOnFloor)
         {
-            result.x = Math.Sign(result.x) * maxSpeed;
+            if (Math.Abs(result.x) > maxSpeed)
+            {
+                result.x = Math.Sign(result.x) * maxSpeed;
+            }
+        } else {
+            if (Math.Abs(result.x) > maxHorizontalAirSpeed)
+            {
+                result.x = Math.Sign(result.x) * maxHorizontalAirSpeed;
+            }
         }
 
         _rigidbody2D.velocity = result;
