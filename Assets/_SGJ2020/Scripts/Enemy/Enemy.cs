@@ -15,11 +15,9 @@ public class Enemy : MonoBehaviour
 
     public void PlayerLostSight() {
         _player = null;
-        Debug.Log("Lost sight");
     }
     public void PlayerInSight(GameObject playerObject) {
         _player = playerObject;
-        Debug.Log("Player in sight");
     }
 
     public void Hit() {

@@ -6,10 +6,11 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
 {
-    public Transform rayDownOrigin;
+    public Transform rayDownLeftOrigin, rayDownRightOrigin;
 
     public Transform rayLeftOrigin, rayRightOrigin;
 
+    public Transform sprite;
     public SpriteRenderer playerSprite;
 
     public float jumpVelocity = 5f;
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     public float maxSpeed = 5f;
     public float slowedMaxSpeed = 2f;
-
+    public float maxHorizontalAirSpeed = 10f;
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
@@ -30,8 +31,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Collider2D _collider2D;
 
-    private bool _jumped = false;
-
     public void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -41,13 +40,10 @@ public class PlayerController : MonoBehaviour
     public void FixedUpdate()
     {
         Vector2 result = _rigidbody2D.velocity;
-        var floor = Physics2D.Raycast(rayDownOrigin.position, -transform.up, 0.05f);
-        var isOnFloor = floor.collider && floor.collider.CompareTag("Ground");
+        var floorLeft = Physics2D.Raycast(rayDownLeftOrigin.position, -transform.up, 0.05f);
+        var floorRight = Physics2D.Raycast(rayDownRightOrigin.position, -transform.up, 0.05f);
 
-        if (_jumped && isOnFloor)
-        {
-            _jumped = false;
-        }
+        var isOnFloor = (floorLeft.collider && floorLeft.collider.CompareTag("Ground")) || (floorRight.collider && floorRight.collider.tag == "Ground");
 
         var right = transform.right;
         var leftWall = (Physics2D.Raycast(rayLeftOrigin.position, -right, 0.1f));
@@ -62,21 +58,18 @@ public class PlayerController : MonoBehaviour
             result += (Vector2) transform.up * jumpVelocity;
         }
 
-        if (!_jumped && !isOnFloor && isOnLeftWall && Input.GetButton("Jump"))
+        if (!isOnFloor && isOnLeftWall && Input.GetButton("Jump"))
         {
             Vector2 direction = new Vector2();
-            direction += (Vector2) transform.right * wallJumpVelocity.x;
-            direction += (Vector2) transform.up * wallJumpVelocity.y;
-            _jumped = true;
+            direction += (Vector2)transform.right * wallJumpVelocity.x;
+            direction += (Vector2)transform.up * wallJumpVelocity.y;
             result += direction;
         }
-
-        if (!_jumped && !isOnFloor && isOnRightWall && Input.GetButton("Jump"))
+        if (!isOnFloor && isOnRightWall && Input.GetButton("Jump"))
         {
             Vector2 direction = new Vector2();
-            direction += -(Vector2) transform.right * wallJumpVelocity.x;
-            direction += (Vector2) transform.up * wallJumpVelocity.y;
-            _jumped = true;
+            direction += -(Vector2)transform.right * wallJumpVelocity.x;
+            direction += (Vector2)transform.up * wallJumpVelocity.y;
             result += direction;
         }
 
@@ -88,7 +81,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (isOnFloor)
         {
-            result.x *= 0.3f * Time.fixedDeltaTime;
+            result.x *= 0.2f * Time.fixedDeltaTime;
         }
 
 
@@ -101,10 +94,25 @@ public class PlayerController : MonoBehaviour
             result += (Vector2) transform.up * (Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime);
         }
 
-        var currentMaxSpeed = _damagedBySpikes ? slowedMaxSpeed : maxSpeed;
-        if (Math.Abs(result.x) > currentMaxSpeed)
+        if (isOnFloor)
         {
-            result.x = Math.Sign(result.x) * currentMaxSpeed;
+            var currentMaxSpeed = _damagedBySpikes ? slowedMaxSpeed : maxSpeed;
+            if (Math.Abs(result.x) > currentMaxSpeed)
+            {
+                result.x = Math.Sign(result.x) * currentMaxSpeed;
+            }
+        } else {
+            if (Math.Abs(result.x) > maxHorizontalAirSpeed)
+            {
+                result.x = Math.Sign(result.x) * maxHorizontalAirSpeed;
+            }
+        }
+        var currentXScale = sprite.localScale.x;
+
+        if(result.x > 0.01f) {
+            sprite.localScale = new Vector3(currentXScale > 0 ? currentXScale : currentXScale * -1 ,sprite.localScale.y,1);
+        } else if(result.x < -0.01f) {
+            sprite.localScale = new Vector3(currentXScale < 0 ? currentXScale : currentXScale * -1 ,sprite.localScale.y,1);
         }
 
         _rigidbody2D.velocity = result;

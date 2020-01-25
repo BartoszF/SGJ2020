@@ -8,9 +8,7 @@ public class PlayerShootingController : MonoBehaviour
     public BulletShooter bulletShooter;
     public float radius = 1f;
     public float shootForce = 10f;
-    // Start is called before the first frame update
 
-    // Update is called once per frame
     void Update()
     {
         if(Input.GetButtonDown("Fire1")) {
