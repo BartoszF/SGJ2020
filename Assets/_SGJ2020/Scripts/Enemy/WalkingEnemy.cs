@@ -58,10 +58,8 @@ public class WalkingEnemy : Enemy
         }
         else
         {
-            Debug.Log("NODE");
             if (targetNode == null)
             {
-                Debug.Log("NO NODE");
                 JumpNode closest = null;
                 float minDistance = float.PositiveInfinity;
                 foreach (JumpNode node in PlatformPathfinding.nodes)
@@ -75,21 +73,22 @@ public class WalkingEnemy : Enemy
                 }
 
                 targetNode = closest;
-                Debug.Log("TARGET " + targetNode);
             }
             else
             {
                 if (Vector2.Distance(targetNode.transform.position, transform.position) < 0.5f)
                 {
-                    Debug.Log("Next NODE");
+
                     int index = Enemy.rnd.Next(targetNode.connectedNodes.Count);
                     targetNode = targetNode.connectedNodes[index];
+
+                    isJumping = false;
+                    jumpTimer = 0f;
                 }
                 else
                 {
-                    if (Mathf.Abs(targetNode.transform.position.y - transform.position.y) < 1f)
+                    if (!isJumping && Mathf.Abs(targetNode.transform.position.y - transform.position.y) < 1f)
                     {
-                        Debug.Log("SAME Y");
                         Vector2 diff = (Vector2)targetNode.transform.position - (Vector2)transform.position;
 
                         result += (Vector2)transform.right * (diff.normalized.x * moveVelocity) * Time.fixedDeltaTime;
@@ -97,26 +96,31 @@ public class WalkingEnemy : Enemy
                         {
                             result.x = Mathf.Sign(result.x) * maxSpeed;
                         }
-                    } else {
-                        Debug.Log("JUMP");
-                        if(!isJumping) {
+                    }
+                    else
+                    {
+                        if (!isJumping)
+                        {
                             jumpTimer = 0;
                             startJumpPosition = transform.position;
-                            midJumpPosition = (startJumpPosition + (Vector2)targetNode.transform.position)/2;
-                            midJumpPosition.y = targetNode.transform.position.y + 2;
+                            midJumpPosition = (startJumpPosition + (Vector2)targetNode.transform.position) / 2;
+                            midJumpPosition.y = targetNode.transform.position.y > startJumpPosition.y ? targetNode.transform.position.y + 2 : startJumpPosition.y+2;
                             isJumping = true;
 
                         }
-                        if(jumpTimer >= 1f) {
+                        if (jumpTimer >= 1f)
+                        {
                             isJumping = false;
-                        } 
+                        }
 
-                        if(jumpTimer <= 1f) {
-                            Vector2 target = Lerp3(startJumpPosition, midJumpPosition,targetNode.transform.position, jumpTimer);
-                            Vector2 diff = target - (Vector2)transform.position;
-                            result = diff * moveVelocity;
+                        if (jumpTimer <= 1f)
+                        {
+                            Vector2 endPosition = targetNode.transform.position;
+                            Vector2 lerped = cubeBezier2(startJumpPosition, midJumpPosition, midJumpPosition, endPosition, jumpTimer);
+                            Vector2 diff = lerped - (Vector2)transform.position;
+                            _rb.position = lerped;
                             jumpTimer += Time.deltaTime;
-                        } 
+                        }
 
                     }
                 }
@@ -130,29 +134,35 @@ public class WalkingEnemy : Enemy
     {
         Gizmos.color = Color.black;
 
-        if(midJumpPosition != null) {
-            Gizmos.DrawSphere(midJumpPosition,0.3f);
-        }    
+        if (midJumpPosition != null)
+        {
+            Gizmos.DrawSphere(midJumpPosition, 0.3f);
+        }
 
         Gizmos.color = Color.green;
-        if(startJumpPosition != null) {
+        if (startJumpPosition != null)
+        {
             Gizmos.DrawSphere(startJumpPosition, 0.3f);
         }
 
         Gizmos.color = Color.white;
-        if(targetNode != null) {
+        if (targetNode != null)
+        {
             Gizmos.DrawSphere(targetNode.transform.position, 0.5f);
         }
     }
 
-    Vector2 Lerp3(Vector2 a, Vector2 b, Vector2 c, float t) {
-        if (t <= 0.5f)
-        {
-            return Vector2.Lerp(a, b, t * 2f);
-        }
-        else
-        {
-            return Vector2.Lerp(b, c, t);
-        }
-    }
+    public Vector2 cubeBezier2(Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float t)
+ {
+     float r = 1f - t;
+     float f0 = r * r * r;
+     float f1 = r * r * t * 3;
+     float f2 = r * t * t * 3;
+     float f3 = t * t * t;
+
+     return new Vector2(
+     f0*p0.x + f1*p1.x + f2*p2.x + f3*p3.x,
+     f0*p0.y + f1*p1.y + f2*p2.y + f3*p3.y
+ );
+ }
 }
