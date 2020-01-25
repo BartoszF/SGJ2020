@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerShootingController : MonoBehaviour
 {
 
-    public GameObject bulletPrefab;
+    public BulletShooter bulletShooter;
     public float radius = 1f;
     public float shootForce = 10f;
     // Start is called before the first frame update
@@ -22,9 +22,7 @@ public class PlayerShootingController : MonoBehaviour
             Vector2 diff = viewportMouse - transform.position;
             Vector2 normalized = diff.normalized * radius;
 
-            GameObject bullet = Instantiate(bulletPrefab, (Vector2)transform.position + normalized, Quaternion.identity);
-            Rigidbody2D brb = bullet.GetComponent<Rigidbody2D>();
-            brb.AddForce(diff.normalized * shootForce, ForceMode2D.Impulse);
+            bulletShooter.Shoot((Vector2)transform.position + normalized, diff.normalized * shootForce);
         }
     }
 }
