@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     private bool _damagedBySpikes = false;
     private float _currentDamagedBySpikesColddown = 0;
 
+    public bool shootingDisabled = false;
+
     private Rigidbody2D _rigidbody2D;
     private Collider2D _collider2D;
 
@@ -155,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetNoShooting(bool noShooting)
     {
-        // TODO
+        shootingDisabled = noShooting;
     }
 
     public void SetNoHealing(bool noHealing)
