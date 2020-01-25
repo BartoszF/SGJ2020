@@ -35,7 +35,12 @@ public class PlayerController : MonoBehaviour
             result += Vector2.up * jumpVelocity;
         }
 
-        result += Vector2.right * (Input.GetAxis("Horizontal") * horizontalVelocity) * Time.fixedDeltaTime;
+        if(Math.Abs(Input.GetAxis("Horizontal")) > 0.1f) {
+            result += Vector2.right * (Input.GetAxis("Horizontal") * horizontalVelocity) * Time.fixedDeltaTime;
+        } else {
+            result.x *= 0.3f * Time.fixedDeltaTime;
+        }
+
 
         if (_rigidbody2D.velocity.y < 0)
         {
