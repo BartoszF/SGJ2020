@@ -22,9 +22,9 @@ public class Enemy : MonoBehaviour
         _player = playerObject;
     }
 
-    public void Hit() {
-        Destroy(this.gameObject);
+
+    public void Kill()
+    {
+        Destroy(gameObject);
     }
-
-
 }

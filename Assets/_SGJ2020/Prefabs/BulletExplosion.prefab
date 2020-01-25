@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 908729560292121800}
   - component: {fileID: 6709147245590043048}
   - component: {fileID: 6987833183307081738}
+  - component: {fileID: 354598133880605499}
+  - component: {fileID: 1168133277230155145}
   m_Layer: 0
   m_Name: BulletExplosion
   m_TagString: Untagged
@@ -4811,3 +4813,31 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!58 &354598133880605499
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713284192362848605}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &1168133277230155145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7713284192362848605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 038c211c19ad4fd39e843b72df7b5021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - Spikes
   - Manager
+  - Mob
+  - FlyingMob
   layers:
   - Default
   - TransparentFX

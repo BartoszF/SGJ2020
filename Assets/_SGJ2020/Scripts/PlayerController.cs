@@ -223,4 +223,15 @@ public class PlayerController : MonoBehaviour
         _currentDamageColddown = damageColddown;
         _currentHp--;
     }
+
+    public void DamageByBullet()
+    {
+        if (_damaged)
+        {
+            return;
+        }
+        _damaged = true;
+        _currentDamageColddown = damageColddown;
+        _currentHp--;
+    }
 }
