@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 
     public PlayerTrigger playerTrigger;
 
-    private GameObject _player;
+    protected GameObject _player;
 
     public void Start() {
         playerTrigger.registerListener(this);
