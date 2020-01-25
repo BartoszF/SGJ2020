@@ -1,4 +1,5 @@
 ﻿using System;
+using _SGJ2020.Scripts;
 using _SGJ2020.Scripts.PPEffects;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
@@ -173,7 +174,8 @@ public class PlayerController : MonoBehaviour
 
         if (_currentHp == 0)
         {
-            // TODO: gameover
+            StateHolder.State.CurrentScreen = GameScreen.GameOver;
+            gameObject.SetActive(false);
         }
         if (!_damaged && _currentHp < maxHp)
         {

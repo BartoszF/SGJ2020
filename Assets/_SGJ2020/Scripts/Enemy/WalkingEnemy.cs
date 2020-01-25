@@ -13,17 +13,19 @@ public class WalkingEnemy : Enemy
     private BulletShooter _bulletShooter;
     private float _shootTimer = 0f;
     private Rigidbody2D _rb;
+    private PlatformPathfinding _platformPathfinding;
 
     private JumpNode targetNode;
     private Vector2 startJumpPosition, midJumpPosition;
     private float jumpTimer = 0f;
     private bool isJumping = false;
 
-    void Start()
+    private void Start()
     {
         base.Start();
         _bulletShooter = GetComponent<BulletShooter>();
         _rb = GetComponent<Rigidbody2D>();
+        _platformPathfinding = FindObjectOfType<PlatformPathfinding>();
     }
 
     void Update()
@@ -67,7 +69,7 @@ public class WalkingEnemy : Enemy
             {
                 JumpNode closest = null;
                 float minDistance = float.PositiveInfinity;
-                foreach (JumpNode node in PlatformPathfinding.nodes)
+                foreach (JumpNode node in _platformPathfinding.nodes)
                 {
                     float dist = Vector2.Distance(node.transform.position, transform.position);
                     if (dist < minDistance)
