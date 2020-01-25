@@ -22,7 +22,7 @@
               <e p="GameplayEffectManager.cs" t="Include" />
               <e p="SpikeObject.cs" t="Include" />
             </e>
-            <e p="Killzone.cs" t="Include" />
+            <e p="HpBar.cs" t="Include" />
             <e p="Pathfinding" t="Include">
               <e p="JumpNode.cs" t="Include" />
               <e p="PlatformPathfinding.cs" t="Include" />

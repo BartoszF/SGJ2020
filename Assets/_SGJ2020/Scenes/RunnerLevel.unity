@@ -167,6 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ab77887163c8a4b83e8595cce99489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatingTime: 1
+  damageInterval: 0.5
 --- !u!61 &5289553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -335,6 +337,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7ab77887163c8a4b83e8595cce99489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heatingTime: 1
+  damageInterval: 0.5
 --- !u!61 &150296458
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -422,7 +426,7 @@ GameObject:
   - component: {fileID: 263601285}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -442,7 +446,7 @@ MonoBehaviour:
   reverseGravity: 0
   drunk: 0
   noShooting: 0
-  noHealing: 0
+  heating: 0
   spikes: 0
 --- !u!4 &263601286
 Transform:
@@ -1569,7 +1573,9 @@ MonoBehaviour:
   breakBeforeColorGrading: 0
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
-  m_AfterStackBundles: []
+  m_AfterStackBundles:
+  - assemblyQualifiedName: _SGJ2020.Scripts.PPEffects.Drunk, Assembly-CSharp, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &1254107171
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2274,6 +2280,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5211701769814390891, guid: 2665b80783f4b32468c9a29dd849a232,
+        type: 3}
+      propertyPath: ppv
+      value: 
+      objectReference: {fileID: 730374324}
     - target: {fileID: 5211701769814390903, guid: 2665b80783f4b32468c9a29dd849a232,
         type: 3}
       propertyPath: m_Name

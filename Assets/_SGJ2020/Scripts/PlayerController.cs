@@ -28,7 +28,9 @@ public class PlayerController : MonoBehaviour
     public float fallMultiplier = 2.5f;
     public float lowJumpMultiplier = 2f;
 
-    [FormerlySerializedAs("damagedBySpikesColddown")] public float damageColddown = 1f;
+    [FormerlySerializedAs("damagedBySpikesColddown")]
+    public float damageColddown = 1f;
+
     private bool _damaged = false;
     private float _currentDamageColddown = 0;
 
@@ -40,10 +42,18 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rigidbody2D;
     private Collider2D _collider2D;
 
+    public int maxHp = 5;
+    public float hpRegenTime = 10f;
+
+    private int _currentHp;
+    private float _currentHpRegenTime;
+    public int CurrentHealth => _currentHp;
+
     public void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<Collider2D>();
+        _currentHp = maxHp;
     }
 
     public void OnDrawGizmos()
@@ -133,12 +143,15 @@ public class PlayerController : MonoBehaviour
 
         if (result.x > 0.01f)
         {
-            sprite.localScale = new Vector3(currentXScale > 0 ? currentXScale : currentXScale * -1, sprite.localScale.y, 1);
+            sprite.localScale = new Vector3(currentXScale > 0 ? currentXScale : currentXScale * -1, sprite.localScale.y,
+                1);
         }
         else if (result.x < -0.01f)
         {
-            sprite.localScale = new Vector3(currentXScale < 0 ? currentXScale : currentXScale * -1, sprite.localScale.y, 1);
+            sprite.localScale = new Vector3(currentXScale < 0 ? currentXScale : currentXScale * -1, sprite.localScale.y,
+                1);
         }
+
         var scaleY = Physics2D.gravity.y < 0f ? 1f : -1f;
         transform.localScale = new Vector3(transform.localScale.x, scaleY, 1);
 
@@ -151,23 +164,41 @@ public class PlayerController : MonoBehaviour
 
         playerSprite.color = _damaged ? Color.red : Color.white;
 
-        if (_drunk)
-        {
-            _drunkLerp = Mathf.Clamp(_drunkLerp + Time.deltaTime, 0f, 1f);
-        }
-        else
-        {
-            _drunkLerp = Mathf.Clamp(_drunkLerp - Time.deltaTime, 0f, 1f);
-        }
+        _drunkLerp = _drunk
+            ? Mathf.Clamp(_drunkLerp + Time.deltaTime, 0f, 1f)
+            : Mathf.Clamp(_drunkLerp - Time.deltaTime, 0f, 1f);
         var drunkPP = ppv.profile.settings.FindLast(s => s.name == "Drunk(Clone)") as Drunk;
         drunkPP.waving.value = _drunkLerp * 0.01f;
         drunkPP.duplicating.value = _drunkLerp * 0.01f;
+
+        if (_currentHp == 0)
+        {
+            // TODO: gameover
+        }
+        if (!_damaged && _currentHp < maxHp)
+        {
+            _currentHpRegenTime += Time.deltaTime;
+            if (_currentHpRegenTime > hpRegenTime)
+            {
+                _currentHp++;
+                _currentHpRegenTime = 0;
+            }
+        }
+        else
+        {
+            _currentHpRegenTime = 0;
+        }
     }
 
     public void DamageBySpikes()
     {
+        if (_damaged)
+        {
+            return;
+        }
         _currentDamageColddown = damageColddown;
         _damaged = true;
+        _currentHp--;
     }
 
     public void SetDrunk(bool drunk)
@@ -180,12 +211,16 @@ public class PlayerController : MonoBehaviour
         shootingDisabled = noShooting;
     }
 
-
     public void DamageByPlatform(Vector3 transformPosition)
     {
+        if (_damaged)
+        {
+            return;
+        }
         var forceVector = (-transformPosition + transform.position).normalized * 10f;
         _rigidbody2D.AddForce(forceVector, ForceMode2D.Impulse);
         _damaged = true;
         _currentDamageColddown = damageColddown;
+        _currentHp--;
     }
 }
