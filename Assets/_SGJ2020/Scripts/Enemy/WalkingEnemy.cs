@@ -14,7 +14,6 @@ public class WalkingEnemy : Enemy
     private float _shootTimer = 0f;
     private Rigidbody2D _rb;
 
-    // Start is called before the first frame update
     void Start()
     {
         base.Start();
@@ -22,7 +21,6 @@ public class WalkingEnemy : Enemy
         _rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (_shootTimer > 0)
@@ -48,7 +46,6 @@ public class WalkingEnemy : Enemy
             {
                 var target = Physics2D.Raycast((Vector2)transform.position + diff.normalized, diff.normalized, 15);
 
-                Debug.Log(target.collider);
                 if (!target.collider || target.collider.tag == "Player")
                 {
                     _bulletShooter.Shoot((Vector2)transform.position + diff.normalized, diff * shootForce);

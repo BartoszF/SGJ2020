@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
     public Transform rayDownLeftOrigin, rayDownRightOrigin;
 
     public Transform rayLeftOrigin, rayRightOrigin;
+
+    public Transform sprite;
+
     public float jumpVelocity = 5f;
     public Vector2 wallJumpVelocity = new Vector2(5, 5);
 
@@ -93,6 +96,13 @@ public class PlayerController : MonoBehaviour
             {
                 result.x = Math.Sign(result.x) * maxHorizontalAirSpeed;
             }
+        }
+        var currentXScale = sprite.localScale.x;
+
+        if(result.x > 0.01f) {
+            sprite.localScale = new Vector3(currentXScale > 0 ? currentXScale : currentXScale * -1 ,sprite.localScale.y,1);
+        } else if(result.x < -0.01f) {
+            sprite.localScale = new Vector3(currentXScale < 0 ? currentXScale : currentXScale * -1 ,sprite.localScale.y,1);
         }
 
         _rigidbody2D.velocity = result;
