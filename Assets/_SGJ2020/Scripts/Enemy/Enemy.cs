@@ -5,6 +5,8 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 
+    public static System.Random rnd = new System.Random();
+
     public PlayerTrigger playerTrigger;
 
     protected GameObject _player;
