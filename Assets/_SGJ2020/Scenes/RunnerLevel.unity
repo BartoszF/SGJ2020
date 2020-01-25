@@ -1564,8 +1564,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTrigger: {fileID: 1134997494}
-  moveVelocity: 6
-  maxSpeed: 13
+  moveVelocity: 55
+  maxSpeed: 30
   shootCooldown: 3
   shootForce: 2
 --- !u!58 &1179727951
