@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
 {
-    public Transform rayDownOrigin;
+    public Transform rayDownLeftOrigin, rayDownRightOrigin;
 
     public Transform rayLeftOrigin, rayRightOrigin;
     public float jumpVelocity = 5f;
@@ -33,8 +33,10 @@ public class PlayerController : MonoBehaviour
     public void FixedUpdate()
     {
         Vector2 result = _rigidbody2D.velocity;
-        var floor = Physics2D.Raycast(rayDownOrigin.position, -transform.up, 0.05f);
-        var isOnFloor = floor.collider && floor.collider.tag == "Ground";
+        var floorLeft = Physics2D.Raycast(rayDownLeftOrigin.position, -transform.up, 0.05f);
+        var floorRight = Physics2D.Raycast(rayDownRightOrigin.position, -transform.up, 0.05f);
+
+        var isOnFloor = (floorLeft.collider && floorLeft.collider.tag == "Ground") || (floorRight.collider && floorRight.collider.tag == "Ground");
 
         if (_jumped && isOnFloor)
         {
@@ -76,7 +78,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (isOnFloor)
         {
-            result.x *= 0.3f * Time.fixedDeltaTime;
+            result.x *= 0.2f * Time.fixedDeltaTime;
         }
 
 
