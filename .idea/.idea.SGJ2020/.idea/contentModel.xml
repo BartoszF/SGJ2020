@@ -10,8 +10,21 @@
       <e p="Assets" t="Include">
         <e p="_SGJ2020" t="Include">
           <e p="Scripts" t="Include">
+            <e p="Bullet.cs" t="Include" />
+            <e p="BulletShooter.cs" t="Include" />
+            <e p="Enemy" t="Include">
+              <e p="Enemy.cs" t="Include" />
+              <e p="PlayerTrigger.cs" t="Include" />
+              <e p="WalkingEnemy.cs" t="Include" />
+            </e>
+            <e p="GameplayEffects" t="Include">
+              <e p="GameplayEffectManager.cs" t="Include" />
+              <e p="SpikeObject.cs" t="Include" />
+            </e>
             <e p="Killzone.cs" t="Include" />
+            <e p="Platform.cs" t="Include" />
             <e p="PlayerController.cs" t="Include" />
+            <e p="PlayerShootingController.cs" t="Include" />
             <e p="ReduxWannabe" t="Include">
               <e p="GameScreen.cs" t="Include" />
               <e p="GameState.cs" t="Include" />
