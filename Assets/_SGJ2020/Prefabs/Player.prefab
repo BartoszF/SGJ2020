@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fdedefb4c22bde45813d610f2efe830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  godMode: 0
   rayDownLeftOrigin: {fileID: 5211701770267819454}
   rayDownRightOrigin: {fileID: 5211701771154321870}
   rayLeftOrigin: {fileID: 5211701770951783564}
@@ -145,6 +146,7 @@ MonoBehaviour:
   fallMultiplier: 2.5
   lowJumpMultiplier: 2
   damageColddown: 1
+  JumpSound: {fileID: 0}
   shootingDisabled: 0
   maxHp: 5
   hpRegenTime: 10
@@ -179,6 +181,7 @@ MonoBehaviour:
     type: 3}
   brokenBulletPrefab: {fileID: 6427471274081808065, guid: c1f05d5d9fcfa014e8c2629e269627fd,
     type: 3}
+  ShootSound: {fileID: 8300000, guid: 6268846db040fb946afd6ef284e0e4eb, type: 3}
 --- !u!1 &5211701770267819449
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,7 +339,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1239225549
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: -2
   m_Sprite: {fileID: 7388399842426930641, guid: df7888f6efc047e48bde92e2861afe42,
     type: 3}

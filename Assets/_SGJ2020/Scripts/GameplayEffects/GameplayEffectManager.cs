@@ -15,12 +15,14 @@ namespace _SGJ2020.Scripts.GameplayEffects
         public TextMeshProUGUI gameOverSurvived;
         private int _nextWaveSize = 2;
         private float _survivedTime = 0f;
-        
+
         public GameObject groundSpawners;
         public GameObject flyingSpawners;
         public GameObject flyingEnemyPrefab;
         public GameObject groundEnemyPrefab;
-        
+
+        public AudioClip spawnSound;
+
         public bool reverseGravity = false;
         public bool drunk = false;
         public bool noShooting = false;
@@ -66,12 +68,14 @@ namespace _SGJ2020.Scripts.GameplayEffects
         {
             for (var i = 0; i < _nextWaveSize; i++)
             {
+                Vector2 spawnPosition;
                 if (Random.value < 0.5f)
                 {
                     var spawnerCount = flyingSpawners.transform.childCount;
                     var randomIndex = Random.Range(0, spawnerCount);
                     var newEnemy = Instantiate(flyingEnemyPrefab);
                     newEnemy.transform.position = flyingSpawners.transform.GetChild(randomIndex).position;
+                    spawnPosition = newEnemy.transform.position;
                 }
                 else
                 {
@@ -79,7 +83,14 @@ namespace _SGJ2020.Scripts.GameplayEffects
                     var randomIndex = Random.Range(0, spawnerCount);
                     var newEnemy = Instantiate(groundEnemyPrefab);
                     newEnemy.transform.position = groundSpawners.transform.GetChild(randomIndex).position;
+                    spawnPosition = newEnemy.transform.position;
                 }
+
+                GameObject spawnSoundObject = new GameObject("SpawnSound");
+                spawnSoundObject.transform.position = spawnPosition;
+                var audio = spawnSoundObject.AddComponent(typeof(AudioSource)) as AudioSource;
+                audio.PlayOneShot(spawnSound,0.5f);
+                Destroy(audio,1f);
             }
         }
 

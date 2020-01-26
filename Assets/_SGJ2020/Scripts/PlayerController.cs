@@ -99,6 +99,7 @@ public class PlayerController : MonoBehaviour
             direction += (Vector2) transform.right * wallJumpVelocity.x;
             direction += (Vector2) transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
             result += direction;
+            _audioSource.PlayOneShot(JumpSound);
         }
 
         if (!isOnFloor && isOnRightWall && Input.GetButton("Jump"))
@@ -107,6 +108,7 @@ public class PlayerController : MonoBehaviour
             direction += -(Vector2) transform.right * wallJumpVelocity.x;
             direction += (Vector2) transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
             result += direction;
+            _audioSource.PlayOneShot(JumpSound);
         }
 
 
