@@ -1,5 +1,27 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8917108847484034993
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5d4bc159ed47debbb788e31a983753, type: 3}
+  m_Name: DrunkEffect
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  waving:
+    overrideState: 1
+    value: 0
+  duplicating:
+    overrideState: 1
+    value: 0
 --- !u!114 &-8769771862607990408
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -68,6 +90,28 @@ MonoBehaviour:
     defaultState: 1
   dirtIntensity:
     overrideState: 0
+    value: 0
+--- !u!114 &-8400632783851779375
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Drunk
+  m_EditorClassIdentifier: Assembly-CSharp:_SGJ2020.Scripts.PPEffects:Drunk
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  waving:
+    overrideState: 1
+    value: 0
+  duplicating:
+    overrideState: 1
     value: 0
 --- !u!114 &-8109323629716133299
 MonoBehaviour:
@@ -306,7 +350,7 @@ MonoBehaviour:
   - {fileID: 391881028865888977}
   - {fileID: -2490600376663839366}
   - {fileID: 6134809235321960552}
-  - {fileID: -8109323629716133299}
+  - {fileID: -8917108847484034993}
 --- !u!114 &391881028865888977
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1663,6 +1707,28 @@ MonoBehaviour:
     overrideState: 1
     value: 10
 --- !u!114 &6172997536036114024
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Drunk
+  m_EditorClassIdentifier: Assembly-CSharp:_SGJ2020.Scripts.PPEffects:Drunk
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  waving:
+    overrideState: 1
+    value: 0
+  duplicating:
+    overrideState: 1
+    value: 0
+--- !u!114 &6356225171357786441
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}

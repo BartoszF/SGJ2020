@@ -205,7 +205,7 @@ public class PlayerController : MonoBehaviour
         _drunkLerp = _drunk
             ? Mathf.Clamp(_drunkLerp + Time.deltaTime, 0f, 1f)
             : Mathf.Clamp(_drunkLerp - Time.deltaTime, 0f, 1f);
-        var drunkPP = ppv.profile.settings.FindLast(s => s.name == "Drunk(Clone)") as Drunk;
+        var drunkPP = ppv.profile.settings.FindLast(s => s.name == "DrunkEffect(Clone)") as DrunkEffect;
         drunkPP.waving.value = _drunkLerp * 0.01f;
         drunkPP.duplicating.value = _drunkLerp * 0.01f;
 

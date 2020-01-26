@@ -6,14 +6,14 @@ namespace _SGJ2020.Scripts.PPEffects
 {
     [Serializable]
     [PostProcess(typeof(DrunkRenderer), PostProcessEvent.AfterStack, "Custom/Drunk")]
-    public sealed class Drunk : PostProcessEffectSettings
+    public sealed class DrunkEffect : PostProcessEffectSettings
     {
         [Range(0f, 1f), Tooltip("Drunk effect intensity.")]
         public FloatParameter waving = new FloatParameter { value = 0.1f };
         public FloatParameter duplicating = new FloatParameter { value = 0.1f };
     }
 
-    public sealed class DrunkRenderer : PostProcessEffectRenderer<Drunk>
+    public sealed class DrunkRenderer : PostProcessEffectRenderer<DrunkEffect>
     {
         public override void Render(PostProcessRenderContext context)
         {

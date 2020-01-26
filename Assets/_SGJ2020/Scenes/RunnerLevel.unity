@@ -5257,8 +5257,8 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles:
-  - assemblyQualifiedName: _SGJ2020.Scripts.PPEffects.Drunk, Assembly-CSharp, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
+  - assemblyQualifiedName: _SGJ2020.Scripts.PPEffects.DrunkEffect, Assembly-CSharp,
+      Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
 --- !u!82 &1242032126
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6839,6 +6839,146 @@ MonoBehaviour:
   - {fileID: 895008792}
   - {fileID: 322511628}
   - {fileID: 1014873645}
+  - {fileID: 49522875}
+  - {fileID: 230639092}
+  - {fileID: 322511628}
+  - {fileID: 329785597}
+  - {fileID: 357610691}
+  - {fileID: 450598622}
+  - {fileID: 607303100}
+  - {fileID: 672295656}
+  - {fileID: 714474565}
+  - {fileID: 731313546}
+  - {fileID: 895008792}
+  - {fileID: 1014873645}
+  - {fileID: 1015161562}
+  - {fileID: 1025636267}
+  - {fileID: 1057603222}
+  - {fileID: 1324885537}
+  - {fileID: 1379305707}
+  - {fileID: 1409279116}
+  - {fileID: 1432693002}
+  - {fileID: 1504139996}
+  - {fileID: 1532457612}
+  - {fileID: 1833348464}
+  - {fileID: 1852371496}
+  - {fileID: 1952631971}
+  - {fileID: 1958739550}
+  - {fileID: 1988559793}
+  - {fileID: 2035598508}
+  - {fileID: 2065091188}
+  - {fileID: 49522875}
+  - {fileID: 230639092}
+  - {fileID: 322511628}
+  - {fileID: 329785597}
+  - {fileID: 357610691}
+  - {fileID: 450598622}
+  - {fileID: 607303100}
+  - {fileID: 672295656}
+  - {fileID: 714474565}
+  - {fileID: 731313546}
+  - {fileID: 895008792}
+  - {fileID: 1014873645}
+  - {fileID: 1015161562}
+  - {fileID: 1025636267}
+  - {fileID: 1057603222}
+  - {fileID: 1324885537}
+  - {fileID: 1379305707}
+  - {fileID: 1409279116}
+  - {fileID: 1432693002}
+  - {fileID: 1504139996}
+  - {fileID: 1532457612}
+  - {fileID: 1833348464}
+  - {fileID: 1852371496}
+  - {fileID: 1952631971}
+  - {fileID: 1958739550}
+  - {fileID: 1988559793}
+  - {fileID: 2035598508}
+  - {fileID: 2065091188}
+  - {fileID: 49522875}
+  - {fileID: 230639092}
+  - {fileID: 322511628}
+  - {fileID: 329785597}
+  - {fileID: 357610691}
+  - {fileID: 450598622}
+  - {fileID: 607303100}
+  - {fileID: 672295656}
+  - {fileID: 714474565}
+  - {fileID: 731313546}
+  - {fileID: 895008792}
+  - {fileID: 1014873645}
+  - {fileID: 1015161562}
+  - {fileID: 1025636267}
+  - {fileID: 1057603222}
+  - {fileID: 1324885537}
+  - {fileID: 1379305707}
+  - {fileID: 1409279116}
+  - {fileID: 1432693002}
+  - {fileID: 1504139996}
+  - {fileID: 1532457612}
+  - {fileID: 1833348464}
+  - {fileID: 1852371496}
+  - {fileID: 1952631971}
+  - {fileID: 1958739550}
+  - {fileID: 1988559793}
+  - {fileID: 2035598508}
+  - {fileID: 2065091188}
+  - {fileID: 49522875}
+  - {fileID: 230639092}
+  - {fileID: 322511628}
+  - {fileID: 329785597}
+  - {fileID: 357610691}
+  - {fileID: 450598622}
+  - {fileID: 607303100}
+  - {fileID: 672295656}
+  - {fileID: 714474565}
+  - {fileID: 731313546}
+  - {fileID: 895008792}
+  - {fileID: 1014873645}
+  - {fileID: 1015161562}
+  - {fileID: 1025636267}
+  - {fileID: 1057603222}
+  - {fileID: 1324885537}
+  - {fileID: 1379305707}
+  - {fileID: 1409279116}
+  - {fileID: 1432693002}
+  - {fileID: 1504139996}
+  - {fileID: 1532457612}
+  - {fileID: 1833348464}
+  - {fileID: 1852371496}
+  - {fileID: 1952631971}
+  - {fileID: 1958739550}
+  - {fileID: 1988559793}
+  - {fileID: 2035598508}
+  - {fileID: 2065091188}
+  - {fileID: 49522875}
+  - {fileID: 230639092}
+  - {fileID: 322511628}
+  - {fileID: 329785597}
+  - {fileID: 357610691}
+  - {fileID: 450598622}
+  - {fileID: 607303100}
+  - {fileID: 672295656}
+  - {fileID: 714474565}
+  - {fileID: 731313546}
+  - {fileID: 895008792}
+  - {fileID: 1014873645}
+  - {fileID: 1015161562}
+  - {fileID: 1025636267}
+  - {fileID: 1057603222}
+  - {fileID: 1324885537}
+  - {fileID: 1379305707}
+  - {fileID: 1409279116}
+  - {fileID: 1432693002}
+  - {fileID: 1504139996}
+  - {fileID: 1532457612}
+  - {fileID: 1833348464}
+  - {fileID: 1852371496}
+  - {fileID: 1952631971}
+  - {fileID: 1958739550}
+  - {fileID: 1988559793}
+  - {fileID: 2035598508}
+  - {fileID: 2065091188}
 --- !u!1 &1322275041
 GameObject:
   m_ObjectHideFlags: 0
