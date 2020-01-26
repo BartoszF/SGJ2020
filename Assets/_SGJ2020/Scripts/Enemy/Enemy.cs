@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 
 public class Enemy : MonoBehaviour
 {
@@ -13,8 +15,18 @@ public class Enemy : MonoBehaviour
 
     protected GameObject _player;
 
+    private SpriteRenderer _spriteRenderer;
+    private Rigidbody2D _rigidbody;
+
     public void Start() {
         playerTrigger.registerListener(this);
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+    }
+
+    public void Update()
+    {
+        _spriteRenderer.flipX = _rigidbody.velocity.x >= 0;
     }
 
     public void PlayerLostSight() {
