@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
 
     public Transform sprite;
     public SpriteRenderer playerSprite;
+    public Animator playerAnimator;
+    public Transform playerSpriteWrapper;
 
     public PostProcessVolume ppv;
 
@@ -88,12 +90,29 @@ public class PlayerController : MonoBehaviour
         bool isOnLeftWall = leftWall.collider && leftWall.collider.CompareTag("Ground");
         bool isOnRightWall = rightWall.collider && rightWall.collider.CompareTag("Ground");
 
+        if (isOnLeftWall || isOnRightWall)
+        {
+            playerAnimator.SetBool("rest", true);
+        }
+
 
         Debug.Log(isOnFloor);
         if (isOnFloor && Input.GetButton("Jump"))
         {
             result += (Vector2)transform.up * (jumpVelocity * (Physics2D.gravity.y < 0 ? 1f : -1f));
             _audioSource.PlayOneShot(JumpSound);
+            playerAnimator.SetBool("isJumping", true);
+        }
+        else if (!isOnFloor)
+        {
+            playerAnimator.SetBool("isJumping", true);
+        }
+        else if (isOnFloor)
+        {
+            playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("rest", true);
+
+
         }
 
         if (!isOnFloor && isOnLeftWall && Input.GetButton("Jump"))
@@ -103,6 +122,7 @@ public class PlayerController : MonoBehaviour
             direction += (Vector2)transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
             result += direction;
             _audioSource.PlayOneShot(JumpSound);
+            playerAnimator.SetBool("isJumping", true);
         }
 
         if (!isOnFloor && isOnRightWall && Input.GetButton("Jump"))
@@ -112,6 +132,7 @@ public class PlayerController : MonoBehaviour
             direction += (Vector2)transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
             result += direction;
             _audioSource.PlayOneShot(JumpSound);
+            playerAnimator.SetBool("isJumping", true);
         }
 
 
@@ -120,10 +141,14 @@ public class PlayerController : MonoBehaviour
         {
             result += (Vector2)transform.right *
                       (Input.GetAxis("Horizontal") * horizontalVelocity * Time.fixedDeltaTime * drunkMultiplier);
+            playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("rest", false);
         }
         else if (isOnFloor)
         {
             result.x *= 0.2f * Time.fixedDeltaTime;
+            playerAnimator.SetBool("rest", true);
+
         }
 
 
@@ -152,16 +177,16 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        var currentXScale = sprite.localScale.x;
+        var currentXScale = playerSpriteWrapper.localScale.x;
 
         if (result.x > 0.01f)
         {
-            sprite.localScale = new Vector3(currentXScale > 0 ? currentXScale : currentXScale * -1, sprite.localScale.y,
+            playerSpriteWrapper.localScale = new Vector3(currentXScale > 0 ? currentXScale : currentXScale * -1, playerSpriteWrapper.localScale.y,
                 1);
         }
         else if (result.x < -0.01f)
         {
-            sprite.localScale = new Vector3(currentXScale < 0 ? currentXScale : currentXScale * -1, sprite.localScale.y,
+            playerSpriteWrapper.localScale = new Vector3(currentXScale < 0 ? currentXScale : currentXScale * -1, playerSpriteWrapper.localScale.y,
                 1);
         }
 

@@ -72,6 +72,7 @@ public class WalkingEnemy : Enemy
                 float minDistance = float.PositiveInfinity;
                 foreach (JumpNode node in _platformPathfinding.nodes)
                 {
+                    if (node == null) continue;
                     float dist = Vector2.Distance(node.transform.position, transform.position);
                     if (dist < minDistance)
                     {
@@ -80,7 +81,8 @@ public class WalkingEnemy : Enemy
                     }
                 }
 
-                targetNode = closest;
+                if (closest != null)
+                    targetNode = closest;
             }
             else
             {
