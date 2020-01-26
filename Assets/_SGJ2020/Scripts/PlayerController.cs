@@ -32,6 +32,8 @@ public class PlayerController : MonoBehaviour
     [FormerlySerializedAs("damagedBySpikesColddown")]
     public float damageColddown = 1f;
 
+    public AudioClip JumpSound;
+
     private bool _damaged = false;
     private float _currentDamageColddown = 0;
 
@@ -48,12 +50,14 @@ public class PlayerController : MonoBehaviour
 
     private int _currentHp;
     private float _currentHpRegenTime;
+    private AudioSource _audioSource;
     public int CurrentHealth => _currentHp;
 
     public void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _collider2D = GetComponent<Collider2D>();
+        _audioSource = GetComponent<AudioSource>();
         _currentHp = maxHp;
     }
 
@@ -84,6 +88,7 @@ public class PlayerController : MonoBehaviour
         if (isOnFloor && Input.GetButton("Jump"))
         {
             result += (Vector2) transform.up * (jumpVelocity * (Physics2D.gravity.y < 0 ? 1f : -1f));
+            _audioSource.PlayOneShot(JumpSound);
         }
 
         if (!isOnFloor && isOnLeftWall && Input.GetButton("Jump"))
