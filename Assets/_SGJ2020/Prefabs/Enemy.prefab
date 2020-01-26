@@ -167,7 +167,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6427471274081808065, guid: 755974dc9febaf84d99d7955e1b5bb9a,
     type: 3}
   brokenBulletPrefab: {fileID: 0}
-  ShootSound: {fileID: 0}
+  ShootSound: {fileID: 8300000, guid: 6268846db040fb946afd6ef284e0e4eb, type: 3}
 --- !u!82 &844854541
 AudioSource:
   m_ObjectHideFlags: 0

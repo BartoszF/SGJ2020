@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public float damageColddown = 1f;
 
     public AudioClip JumpSound;
+    public AudioClip gameOverSound;
 
     private bool _damaged = false;
     private float _currentDamageColddown = 0;
@@ -99,6 +100,7 @@ public class PlayerController : MonoBehaviour
             direction += (Vector2) transform.right * wallJumpVelocity.x;
             direction += (Vector2) transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
             result += direction;
+            _audioSource.PlayOneShot(JumpSound);
         }
 
         if (!isOnFloor && isOnRightWall && Input.GetButton("Jump"))
@@ -107,6 +109,7 @@ public class PlayerController : MonoBehaviour
             direction += -(Vector2) transform.right * wallJumpVelocity.x;
             direction += (Vector2) transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
             result += direction;
+            _audioSource.PlayOneShot(JumpSound);
         }
 
 
@@ -182,6 +185,10 @@ public class PlayerController : MonoBehaviour
         if (_currentHp == 0)
         {
             StateHolder.State.CurrentScreen = GameScreen.GameOver;
+            Camera.main.gameObject.GetComponent<AudioSource>().Stop();
+            var gameOverSoundObject = new GameObject("GameOverSound");
+            var gameOverSource = gameOverSoundObject.AddComponent(typeof(AudioSource)) as AudioSource;
+            gameOverSource.PlayOneShot(gameOverSound);
             gameObject.SetActive(false);
         }
         if (!_damaged && _currentHp < maxHp)
