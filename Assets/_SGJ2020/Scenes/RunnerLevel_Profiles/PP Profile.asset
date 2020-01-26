@@ -262,7 +262,7 @@ MonoBehaviour:
   - {fileID: 391881028865888977}
   - {fileID: -2490600376663839366}
   - {fileID: 6134809235321960552}
-  - {fileID: -2434439901546382030}
+  - {fileID: 1521274083060571846}
 --- !u!114 &391881028865888977
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -316,10 +316,10 @@ MonoBehaviour:
     value: 1
   temperature:
     overrideState: 1
-    value: 7
+    value: 32
   tint:
     overrideState: 1
-    value: 1
+    value: 17
   colorFilter:
     overrideState: 0
     value: {r: 1, g: 1, b: 1, a: 1}
@@ -337,7 +337,7 @@ MonoBehaviour:
     value: 0
   contrast:
     overrideState: 1
-    value: 36
+    value: 61
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -1574,6 +1574,28 @@ MonoBehaviour:
       - 0.5
       - 0.5
       - 0.5
+--- !u!114 &1521274083060571846
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Drunk
+  m_EditorClassIdentifier: Assembly-CSharp:_SGJ2020.Scripts.PPEffects:Drunk
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  waving:
+    overrideState: 1
+    value: 0
+  duplicating:
+    overrideState: 1
+    value: 0
 --- !u!114 &6134809235321960552
 MonoBehaviour:
   m_ObjectHideFlags: 3
