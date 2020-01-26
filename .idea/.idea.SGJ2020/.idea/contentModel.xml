@@ -26,6 +26,7 @@
               <e p="SpikeObject.cs" t="Include" />
             </e>
             <e p="HpBar.cs" t="Include" />
+            <e p="Parallax.cs" t="Include" />
             <e p="Pathfinding" t="Include">
               <e p="JumpNode.cs" t="Include" />
               <e p="PlatformPathfinding.cs" t="Include" />

@@ -9,6 +9,8 @@ using UnityEngine.Serialization;
 [RequireComponent(typeof(Collider2D))]
 public class PlayerController : MonoBehaviour
 {
+    public bool godMode = false;
+    
     public Transform rayDownLeftOrigin, rayDownRightOrigin;
 
     public Transform rayLeftOrigin, rayRightOrigin;
@@ -67,8 +69,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 result = _rigidbody2D.velocity;
         var raycastDirection = Physics2D.gravity.y < 0 ? -transform.up : transform.up;
-        var floorLeft = Physics2D.Raycast(rayDownLeftOrigin.position, raycastDirection, 0.05f);
-        var floorRight = Physics2D.Raycast(rayDownRightOrigin.position, raycastDirection, 0.05f);
+        var floorLeft = Physics2D.Raycast(rayDownLeftOrigin.position, raycastDirection, 0.1f);
+        var floorRight = Physics2D.Raycast(rayDownRightOrigin.position, raycastDirection, 0.1f);
 
         var isOnFloor = floorLeft.collider && floorLeft.collider.CompareTag("Ground") ||
                         floorRight.collider && floorRight.collider.CompareTag("Ground");
@@ -194,7 +196,7 @@ public class PlayerController : MonoBehaviour
 
     public void DamageBySpikes()
     {
-        if (_damaged)
+        if (_damaged || godMode)
         {
             return;
         }
@@ -215,7 +217,7 @@ public class PlayerController : MonoBehaviour
 
     public void DamageByPlatform(Vector3 transformPosition)
     {
-        if (_damaged)
+        if (_damaged || godMode)
         {
             return;
         }
@@ -228,7 +230,7 @@ public class PlayerController : MonoBehaviour
 
     public void DamageByBullet()
     {
-        if (_damaged)
+        if (_damaged || godMode)
         {
             return;
         }
