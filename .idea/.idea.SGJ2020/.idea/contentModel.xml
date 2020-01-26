@@ -20,6 +20,7 @@
               <e p="PlayerTrigger.cs" t="Include" />
               <e p="WalkingEnemy.cs" t="Include" />
             </e>
+            <e p="Fog.cs" t="Include" />
             <e p="GameOverOverlay.cs" t="Include" />
             <e p="GameplayEffects" t="Include">
               <e p="GameplayEffectManager.cs" t="Include" />
