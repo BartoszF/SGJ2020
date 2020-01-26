@@ -10,7 +10,7 @@ using UnityEngine.Serialization;
 public class PlayerController : MonoBehaviour
 {
     public bool godMode = false;
-    
+
     public Transform rayDownLeftOrigin, rayDownRightOrigin;
 
     public Transform rayLeftOrigin, rayRightOrigin;
@@ -74,8 +74,8 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 result = _rigidbody2D.velocity;
         var raycastDirection = Physics2D.gravity.y < 0 ? -transform.up : transform.up;
-        var floorLeft = Physics2D.Raycast(rayDownLeftOrigin.position, raycastDirection, 0.1f);
-        var floorRight = Physics2D.Raycast(rayDownRightOrigin.position, raycastDirection, 0.1f);
+        var floorLeft = Physics2D.Raycast(rayDownLeftOrigin.position, raycastDirection, 0.12f);
+        var floorRight = Physics2D.Raycast(rayDownRightOrigin.position, raycastDirection, 0.12f);
 
         var isOnFloor = floorLeft.collider && floorLeft.collider.CompareTag("Ground") ||
                         floorRight.collider && floorRight.collider.CompareTag("Ground");
@@ -90,15 +90,15 @@ public class PlayerController : MonoBehaviour
 
         if (isOnFloor && Input.GetButton("Jump"))
         {
-            result += (Vector2) transform.up * (jumpVelocity * (Physics2D.gravity.y < 0 ? 1f : -1f));
+            result += (Vector2)transform.up * (jumpVelocity * (Physics2D.gravity.y < 0 ? 1f : -1f));
             _audioSource.PlayOneShot(JumpSound);
         }
 
         if (!isOnFloor && isOnLeftWall && Input.GetButton("Jump"))
         {
             Vector2 direction = new Vector2();
-            direction += (Vector2) transform.right * wallJumpVelocity.x;
-            direction += (Vector2) transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
+            direction += (Vector2)transform.right * wallJumpVelocity.x;
+            direction += (Vector2)transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
             result += direction;
             _audioSource.PlayOneShot(JumpSound);
         }
@@ -106,8 +106,8 @@ public class PlayerController : MonoBehaviour
         if (!isOnFloor && isOnRightWall && Input.GetButton("Jump"))
         {
             Vector2 direction = new Vector2();
-            direction += -(Vector2) transform.right * wallJumpVelocity.x;
-            direction += (Vector2) transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
+            direction += -(Vector2)transform.right * wallJumpVelocity.x;
+            direction += (Vector2)transform.up * wallJumpVelocity.y * (Physics2D.gravity.y < 0 ? 1f : -1f);
             result += direction;
             _audioSource.PlayOneShot(JumpSound);
         }
@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         var drunkMultiplier = _drunk ? (Mathf.Sin(Time.timeSinceLevelLoad) > 0 ? 1f : -1f) : 1f;
         if (Math.Abs(Input.GetAxis("Horizontal")) > 0.1f)
         {
-            result += (Vector2) transform.right *
+            result += (Vector2)transform.right *
                       (Input.GetAxis("Horizontal") * horizontalVelocity * Time.fixedDeltaTime * drunkMultiplier);
         }
         else if (isOnFloor)
@@ -127,11 +127,11 @@ public class PlayerController : MonoBehaviour
 
         if (_rigidbody2D.velocity.y < 0)
         {
-            result += (Vector2) transform.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime);
+            result += (Vector2)transform.up * (Physics2D.gravity.y * (fallMultiplier - 1) * Time.fixedDeltaTime);
         }
         else if (_rigidbody2D.velocity.y > 0 && !Input.GetButton("Jump"))
         {
-            result += (Vector2) transform.up * (Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime);
+            result += (Vector2)transform.up * (Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.fixedDeltaTime);
         }
 
         if (isOnFloor)
