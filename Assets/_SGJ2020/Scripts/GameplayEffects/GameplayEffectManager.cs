@@ -11,7 +11,10 @@ namespace _SGJ2020.Scripts.GameplayEffects
         public float timeBetweenWaves = 10f;
         private float _currentTimeFromWave = 0f;
         public TextMeshProUGUI waveCountdown;
+        public TextMeshProUGUI survivedTime;
+        public TextMeshProUGUI gameOverSurvived;
         private int _nextWaveSize = 2;
+        private float _survivedTime = 0f;
         
         public GameObject groundSpawners;
         public GameObject flyingSpawners;
@@ -41,7 +44,12 @@ namespace _SGJ2020.Scripts.GameplayEffects
             _player.SetDrunk(drunk);
             _player.SetNoShooting(noShooting);
 
-            _currentTimeFromWave += Time.deltaTime;
+            if (StateHolder.State.CurrentScreen != GameScreen.GameOver)
+            {
+                _currentTimeFromWave += Time.deltaTime;
+                _survivedTime += Time.deltaTime;
+            }
+
             if (_currentTimeFromWave > timeBetweenWaves)
             {
                 _currentTimeFromWave = 0;
@@ -50,6 +58,8 @@ namespace _SGJ2020.Scripts.GameplayEffects
                 ToggleRandomEffects();
             }
             waveCountdown.text = "" + (timeBetweenWaves - _currentTimeFromWave).ToString("00.00");
+            survivedTime.text = "Survived: " + _survivedTime.ToString("00000");
+            gameOverSurvived.text = "You survived for " + _survivedTime.ToString("00000") + " seconds";
         }
 
         private void SpawnMobs()
