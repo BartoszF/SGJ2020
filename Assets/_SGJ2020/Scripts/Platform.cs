@@ -51,6 +51,6 @@ public class Platform : MonoBehaviour
             _heatingProgress = 0f;
         }
 
-        _spriteRenderer.color = Color.Lerp(Color.white, Color.yellow, _heatingProgress / heatingTime);
+        _spriteRenderer.color = Color.Lerp(Color.white, Color.black, _heatingProgress / heatingTime);
     }
 }

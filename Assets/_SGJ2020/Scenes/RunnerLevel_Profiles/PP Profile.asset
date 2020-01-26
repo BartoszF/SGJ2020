@@ -69,6 +69,28 @@ MonoBehaviour:
   dirtIntensity:
     overrideState: 0
     value: 0
+--- !u!114 &-8109323629716133299
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Drunk
+  m_EditorClassIdentifier: Assembly-CSharp:_SGJ2020.Scripts.PPEffects:Drunk
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  waving:
+    overrideState: 1
+    value: 0
+  duplicating:
+    overrideState: 1
+    value: 0
 --- !u!114 &-7300393196256363114
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -284,7 +306,7 @@ MonoBehaviour:
   - {fileID: 391881028865888977}
   - {fileID: -2490600376663839366}
   - {fileID: 6134809235321960552}
-  - {fileID: -4146360660704192122}
+  - {fileID: -8109323629716133299}
 --- !u!114 &391881028865888977
 MonoBehaviour:
   m_ObjectHideFlags: 3
