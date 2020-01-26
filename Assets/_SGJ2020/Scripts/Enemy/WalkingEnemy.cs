@@ -30,6 +30,7 @@ public class WalkingEnemy : Enemy
 
     void Update()
     {
+        base.Update();
         Vector2 result = Vector2.zero;
         if (_shootTimer > 0)
         {
