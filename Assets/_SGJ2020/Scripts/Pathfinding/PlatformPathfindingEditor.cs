@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if (UNITY_EDITOR) 
+
 [CustomEditor(typeof(PlatformPathfinding))]
 public class PlatformPathfindingEditor : Editor {
     public override void OnInspectorGUI() {
@@ -16,4 +18,6 @@ public class PlatformPathfindingEditor : Editor {
         
     }
 }
+
+#endif
 
