@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip JumpSound;
     public AudioClip gameOverSound;
+    public AudioClip gameOverMusic;
 
     private bool _damaged = false;
     private float _currentDamageColddown = 0;
@@ -185,7 +186,9 @@ public class PlayerController : MonoBehaviour
         if (_currentHp == 0)
         {
             StateHolder.State.CurrentScreen = GameScreen.GameOver;
-            Camera.main.gameObject.GetComponent<AudioSource>().Stop();
+            AudioSource cameraSource = Camera.main.gameObject.GetComponent<AudioSource>();
+            cameraSource.clip = gameOverMusic;
+            cameraSource.Play();
             var gameOverSoundObject = new GameObject("GameOverSound");
             var gameOverSource = gameOverSoundObject.AddComponent(typeof(AudioSource)) as AudioSource;
             gameOverSource.PlayOneShot(gameOverSound);

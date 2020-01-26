@@ -5335,6 +5335,48 @@ MonoBehaviour:
   - {fileID: 1014873645}
   - {fileID: 1275477821}
   - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
 --- !u!1 &1322275041
 GameObject:
   m_ObjectHideFlags: 0
@@ -7486,7 +7528,7 @@ PrefabInstance:
     - target: {fileID: 5211701769814390891, guid: 2665b80783f4b32468c9a29dd849a232,
         type: 3}
       propertyPath: godMode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5211701769814390891, guid: 2665b80783f4b32468c9a29dd849a232,
         type: 3}
@@ -7498,6 +7540,11 @@ PrefabInstance:
       propertyPath: gameOverSound
       value: 
       objectReference: {fileID: 8300000, guid: c9279adf4cd8e99428a6310271672283, type: 3}
+    - target: {fileID: 5211701769814390891, guid: 2665b80783f4b32468c9a29dd849a232,
+        type: 3}
+      propertyPath: gameOverMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 4c441769b76cfae4884228120cef3159, type: 3}
     - target: {fileID: 5211701769814390903, guid: 2665b80783f4b32468c9a29dd849a232,
         type: 3}
       propertyPath: m_Name
