@@ -32,7 +32,7 @@ public class FlyingEnemy : Enemy
 
         Player = FindObjectOfType<PlayerController>().transform;
 
-        InvokeRepeating("UpdatePath", 0f, 2f);
+        InvokeRepeating("UpdatePath", 0f, 1.2f);
     }
 
     void UpdatePath()
@@ -49,14 +49,13 @@ public class FlyingEnemy : Enemy
         }
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         if (_shootTimer > 0)
         {
             _shootTimer -= Time.deltaTime;
         }
-        
+
         if (_player)
         {
             Vector2 playerPosition = _player.transform.position;
@@ -84,16 +83,21 @@ public class FlyingEnemy : Enemy
                 _reachedEnd = false;
             }
 
-            Vector2 dir = ((Vector2)_path.vectorPath[_curPoint] - (Vector2)transform.position).normalized;
-            Vector2 force = dir * Speed;
-
-            _rigidbody.AddForce(force * Time.fixedDeltaTime);
-
-            float dist = Vector2.Distance(_path.vectorPath[_curPoint], transform.position);
-
-            if (dist < 0.5f)
+            if (!_reachedEnd)
             {
-                _curPoint++;
+                Vector2 dir = ((Vector2)_path.vectorPath[_curPoint] - (Vector2)transform.position).normalized;
+                Vector2 force = dir * Speed;
+
+                _rigidbody.AddForce(force * Time.fixedDeltaTime);
+
+                float dist = Vector2.Distance(_path.vectorPath[_curPoint], transform.position);
+
+                if (dist < 2f)
+                {
+                    _curPoint++;
+                }
+            } else {
+                _rigidbody.velocity *= 0.3f;
             }
         }
     }

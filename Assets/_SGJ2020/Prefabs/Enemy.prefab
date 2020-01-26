@@ -73,7 +73,7 @@ GameObject:
   - component: {fileID: 1270902465728941158}
   - component: {fileID: 1270902465728941159}
   - component: {fileID: 1270902465728941179}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Mob
   m_Icon: {fileID: 0}

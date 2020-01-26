@@ -3521,6 +3521,48 @@ MonoBehaviour:
   - {fileID: 1014873645}
   - {fileID: 1275477821}
   - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
+  - {fileID: 33938801}
+  - {fileID: 322511628}
+  - {fileID: 370068152}
+  - {fileID: 1014873645}
+  - {fileID: 1275477821}
+  - {fileID: 1596242093}
 --- !u!1 &1377544496
 GameObject:
   m_ObjectHideFlags: 0
@@ -4891,6 +4933,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5211701769814390903, guid: 2665b80783f4b32468c9a29dd849a232,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2665b80783f4b32468c9a29dd849a232, type: 3}

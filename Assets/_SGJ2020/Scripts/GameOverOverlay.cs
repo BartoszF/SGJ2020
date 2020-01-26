@@ -11,7 +11,6 @@ public class GameOverOverlay : MonoBehaviour
     private float _waitTime = 0;
     private void Update()
     {
-        Debug.Log(StateHolder.State.CurrentScreen);
         if (StateHolder.State.CurrentScreen == GameScreen.GameOver)
         {
             _waitTime += Time.deltaTime;
