@@ -67,16 +67,16 @@ public class PlayerController : MonoBehaviour
 
     public void OnDrawGizmos()
     {
-        // var raycastDirection = Physics2D.gravity.y < 0 ? -transform.up : transform.up;
-        // Gizmos.DrawLine(rayDownLeftOrigin.position, rayDownLeftOrigin.position + raycastDirection * 0.05f);
+         // var raycastDirection = Physics2D.gravity.y < 0 ? -transform.up : transform.up;
+         // Gizmos.DrawLine(rayDownLeftOrigin.position, rayDownLeftOrigin.position + raycastDirection * 0.2f);
     }
 
     public void FixedUpdate()
     {
         Vector2 result = _rigidbody2D.velocity;
         var raycastDirection = Physics2D.gravity.y < 0 ? -transform.up : transform.up;
-        var floorLeft = Physics2D.Raycast(rayDownLeftOrigin.position, raycastDirection, 0.12f);
-        var floorRight = Physics2D.Raycast(rayDownRightOrigin.position, raycastDirection, 0.12f);
+        var floorLeft = Physics2D.Raycast(rayDownLeftOrigin.position, raycastDirection, 0.05f);
+        var floorRight = Physics2D.Raycast(rayDownRightOrigin.position, raycastDirection, 0.05f);
 
         var isOnFloor = floorLeft.collider && floorLeft.collider.CompareTag("Ground") ||
                         floorRight.collider && floorRight.collider.CompareTag("Ground");
@@ -89,6 +89,7 @@ public class PlayerController : MonoBehaviour
         bool isOnRightWall = rightWall.collider && rightWall.collider.CompareTag("Ground");
 
 
+        Debug.Log(isOnFloor);
         if (isOnFloor && Input.GetButton("Jump"))
         {
             result += (Vector2)transform.up * (jumpVelocity * (Physics2D.gravity.y < 0 ? 1f : -1f));
